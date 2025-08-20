@@ -3,25 +3,105 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/components/ui/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
+
+  const contactSchema = z.object({
+    firstName: z.string().min(2, "First name must be at least 2 characters"),
+    lastName: z.string().min(2, "Last name must be at least 2 characters"),
+    email: z.string().email("Please enter a valid email address"),
+    subject: z.string().min(3, "Subject must be at least 3 characters"),
+    message: z.string().min(10, "Message must be at least 10 characters"),
+  });
+
+  type ContactValues = z.infer<typeof contactSchema>;
+
+  const form = useForm<ContactValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+    mode: "onBlur",
+  });
+
+  const onSubmit = async (values: ContactValues) => {
+    const formspreeIdRaw = import.meta.env.VITE_FORMSPREE_FORM_ID as string | undefined;
+    if (!formspreeIdRaw) {
+      toast({
+        title: "Submission not configured",
+        description: "Add VITE_FORMSPREE_FORM_ID to your .env file to enable form submissions.",
+      });
+      return;
+    }
+
+    // Allow either raw ID (e.g., "xblkvjbo") or full URL (e.g., "https://formspree.io/f/xblkvjbo")
+    const formspreeId = formspreeIdRaw.replace(/^https?:\/\/formspree\.io\/f\//, "").trim();
+    if (!formspreeId || /https?:\/\//.test(formspreeId)) {
+      toast({
+        title: "Invalid Formspree ID",
+        description: "Set VITE_FORMSPREE_FORM_ID to the ID only (e.g., xblkvjbo) or the full URL.",
+      });
+      return;
+    }
+
+    const endpoint = `https://formspree.io/f/${formspreeId}`;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          subject: values.subject,
+          message: values.message,
+        }),
+      });
+
+      if (response.ok) {
+        toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
+        form.reset();
+      } else {
+        throw new Error("Failed to submit");
+      }
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later or email me directly.",
+      });
+    }
+  };
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "alex.johnson@email.com",
-      href: "mailto:alex.johnson@email.com"
+      value: "msmarafath1@email.com",
+      href: "mailto:msmarafath1@email.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
+      value: "+94 772030373",
+      href: "tel:+94772030373"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Colombo, Sri Lanka",
       href: "#"
     }
   ];
@@ -30,19 +110,19 @@ const Contact = () => {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com",
+      href: "https://github.com/Arafath-MSM",
       color: "hover:text-gray-900"
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/arafath-msm-44420b247",
       color: "hover:text-blue-600"
     },
     {
       icon: Twitter,
       label: "Twitter",
-      href: "https://twitter.com",
+      href: "https://x.com/MsmArafath",
       color: "hover:text-blue-400"
     }
   ];
@@ -70,69 +150,112 @@ const Contact = () => {
             {/* Contact Form */}
             <Card className="p-8 bg-card-gradient backdrop-blur-sm border-border/50 shadow-medium">
               <h3 className="text-2xl font-semibold mb-6">Send me a message</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                      First Name
-                    </label>
-                    <Input 
-                      placeholder="John" 
-                      className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300"
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="firstName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>First Name</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="John"
+                              className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="lastName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Last Name</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Doe"
+                              className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
                   </div>
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                      Last Name
-                    </label>
-                    <Input 
-                      placeholder="Doe" 
-                      className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                    Email
-                  </label>
-                  <Input 
-                    type="email" 
-                    placeholder="john.doe@email.com" 
-                    className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300"
+
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="john.doe@email.com"
+                            className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                    Subject
-                  </label>
-                  <Input 
-                    placeholder="Project collaboration" 
-                    className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300"
+
+                  <FormField
+                    control={form.control}
+                    name="subject"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Subject</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Project collaboration"
+                            className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground mb-2 block">
-                    Message
-                  </label>
-                  <Textarea 
-                    placeholder="Tell me about your project..."
-                    rows={6}
-                    className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300 resize-none"
+
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Tell me about your project..."
+                            rows={6}
+                            className="bg-background/50 border-border/50 focus:border-primary transition-colors duration-300 resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow transition-all duration-300 hover:scale-105"
-                >
-                  <Send className="mr-2 h-4 w-4" />
-                  Send Message
-                </Button>
-              </form>
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow transition-all duration-300 hover:scale-105"
+                    disabled={form.formState.isSubmitting}
+                  >
+                    <Send className="mr-2 h-4 w-4" />
+                    {form.formState.isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
+                </form>
+              </Form>
             </Card>
 
             {/* Contact Information */}

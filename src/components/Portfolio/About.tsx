@@ -4,18 +4,19 @@ import { User, Heart, Coffee, Award } from "lucide-react";
 
 const About = () => {
   const stats = [
-    { icon: User, label: "Years Experience", value: "5+" },
-    { icon: Award, label: "Projects Completed", value: "50+" },
-    { icon: Heart, label: "Happy Clients", value: "30+" },
-    { icon: Coffee, label: "Cups of Coffee", value: "1000+" },
+    { icon: User, label: "Years Experience", value: "2+" },
+    { icon: Award, label: "Projects Completed", value: "10+" },
+    { icon: Heart, label: "Happy Clients", value: "5+" },
   ];
 
   const values = [
     "Clean & Modern Design",
     "User-Centered Approach",
+    "API Integration",
+    "Cloud Services",
+    "DevOps Practices",
     "Performance Optimization",
     "Responsive Development",
-    "Collaborative Mindset",
     "Continuous Learning"
   ];
 
@@ -28,7 +29,7 @@ const About = () => {
               About <span className="bg-hero-gradient bg-clip-text text-transparent">Me</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Passionate about creating digital experiences that make a difference
+            Passionate about creating impactful digital solutions that blend functionality and performance.
             </p>
           </div>
 
@@ -37,14 +38,10 @@ const About = () => {
               <div className="space-y-4">
                 <h3 className="text-2xl font-semibold">My Story</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  I'm a creative developer with a passion for crafting beautiful, functional digital experiences. 
-                  With over 5 years in the industry, I've had the privilege of working with startups, agencies, 
-                  and established brands to bring their visions to life.
+                I’m a detail-oriented software engineer with hands-on experience in full-stack development, cloud services, and DevOps practices. I’ve built scalable applications using React.js, Spring Boot, Django, FastAPI, and Laravel, with strong foundations in databases like MySQL, PostgreSQL, and SQL Server.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  My approach combines technical expertise with creative problem-solving, ensuring that every 
-                  project not only looks great but performs exceptionally well. I believe in the power of 
-                  thoughtful design and clean code to create meaningful connections between brands and their audiences.
+                My journey includes collaborating with startups and companies to develop real-world solutions—from full-stack service systems and ERP tools to research projects in AI, NLP, and computer vision. I believe in clean code, scalable design, and continuous learning to deliver high-quality solutions.
                 </p>
               </div>
 
@@ -66,15 +63,15 @@ const About = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Location</span>
-                    <span>San Francisco, CA</span>
+                    <span>Colombo, Sri Lanka</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Education</span>
-                    <span>BS Computer Science</span>
+                    <span>BSC.Eng(Hons) in Computer Engineering</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Languages</span>
-                    <span>English, Spanish</span>
+                    <span>English, Tamil, Sinhala</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Interests</span>

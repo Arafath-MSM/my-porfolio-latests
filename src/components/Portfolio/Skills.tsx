@@ -16,7 +16,7 @@ const Skills = () => {
       icon: Database,
       title: "Backend Development",
       description: "Building robust server-side applications and APIs",
-      skills: ["Node.js", "Python", "PostgreSQL", "MongoDB", "GraphQL", "REST APIs"],
+      skills: ["Spring Boot", "PHP", "Node.js", "Python", "MySQL", "REST APIs"],
       color: "text-green-500"
     },
     {
@@ -52,10 +52,12 @@ const Skills = () => {
   const proficiencyLevels = [
     { skill: "JavaScript/TypeScript", level: 95 },
     { skill: "React/Next.js", level: 90 },
+    { skill: "Java/Spring Boot", level: 80 },
+    { skill: "PHP/Laravel", level: 95 },
     { skill: "UI/UX Design", level: 85 },
     { skill: "Node.js", level: 80 },
-    { skill: "Python", level: 75 },
-    { skill: "Mobile Development", level: 70 }
+    { skill: "Python", level: 80 },
+    { skill: "Flutter /Mobile Development", level: 85 }
   ];
 
   return (

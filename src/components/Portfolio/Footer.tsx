@@ -2,10 +2,10 @@ import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Mail, href: "mailto:alex.johnson@email.com", label: "Email" }
+    { icon: Github, href: "https://github.com/Arafath-MSM", label: "GitHub" },
+    { icon: Linkedin, href: "www.linkedin.com/in/arafath-msm-44420b247", label: "LinkedIn" },
+    { icon: Twitter, href: "https://x.com/MsmArafath", label: "Twitter" },
+    { icon: Mail, href: "mailto:msmarafath1@email.com", label: "Email" }
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -23,7 +23,7 @@ const Footer = () => {
             {/* Brand Section */}
             <div className="md:col-span-2">
               <div className="text-2xl font-bold bg-hero-gradient bg-clip-text text-transparent mb-4">
-                Alex Johnson
+                Arafath MSM
               </div>
               <p className="text-muted-foreground mb-6 max-w-md">
                 Creative developer and designer passionate about crafting beautiful digital experiences 
@@ -90,10 +90,10 @@ const Footer = () => {
           <div className="border-t border-border/50 mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-muted-foreground text-sm mb-4 md:mb-0">
-                © 2024 Alex Johnson. All rights reserved.
+                © 2025 Arafath MSM. All rights reserved.
               </div>
               <div className="flex items-center text-muted-foreground text-sm">
-                Made with <Heart className="h-4 w-4 mx-1 text-red-500" /> using React & Tailwind CSS
+                Made with Arafath <Heart className="h-4 w-4 mx-1 text-red-500" /> using React & Tailwind CSS
               </div>
             </div>
           </div>

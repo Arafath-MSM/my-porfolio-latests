@@ -1,79 +1,163 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Eye } from "lucide-react";
+import karUIImage from "@/assets/kar_ui.png";
+import resturentUIImage from "@/assets/restaurant .png";
+import ecommerUIImage from "@/assets/e-commerce-franco.png";
+import UEMSUIImage from "@/assets/UEMS.png";
+import travelUIImage from "@/assets/Travel-app.png";
+import foodDUIImage from "@/assets/foodD.png";
+import resturentUIUXUIImage from "@/assets/restarrent-ui-ux.png";
+import textofiaUIImage from "@/assets/textofia.png";
+import bmiCalculatorUIImage from "@/assets/BMI calculator.png";
+import mojoHomesUIImage from "@/assets/mojo-homes.png";
+import chenaiHolisticHomeCareUIImage from "@/assets/chennai.png";
+import mojoHomeUIUXUIImage from "@/assets/mojo-ui-ux.png";
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("all");
+  const INITIAL_COUNT = 6;
+  const LOAD_STEP = 6;
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+
+  const isLinkAvailable = (url: string) => Boolean(url && url.trim() !== "" && url !== "#");
 
   const projects = [
     {
       id: 1,
       title: "E-Commerce Platform",
       description: "A modern e-commerce platform with advanced filtering, payment integration, and admin dashboard.",
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80",
+      image: ecommerUIImage,
       category: "web",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "#",
+      technologies: ["PHP", "Laravel", "MySQL", "Stripe"],
+      liveUrl: "https://www.franco.lk/",
       githubUrl: "#",
       featured: true
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "Collaborative task management application with real-time updates and team collaboration features.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=800&q=80",
+      title: "Karstation Web App",
+      description: "Karstation is a web application that allows users to book a car for a ride.",
+      image: karUIImage,
       category: "web",
-      technologies: ["Vue.js", "Firebase", "Tailwind"],
-      liveUrl: "#",
-      githubUrl: "#",
+      technologies: ["React.js", "Spring Boot", "MySQL", "AWS"],
+      liveUrl: "https://qakarvendor.itaffix.com/login",
+      githubUrl: "https://github.com/Arafath-MSM/kar_ui",
       featured: false
     },
     {
       id: 3,
-      title: "Mobile Fitness App",
+      title: "Food Delivery App",
       description: "Cross-platform fitness tracking app with workout plans, progress tracking, and social features.",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
+      image: foodDUIImage,
       category: "mobile",
-      technologies: ["React Native", "GraphQL", "AWS"],
+      technologies: ["Flutter", "Dart", "Firebase"],
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Arafath-MSM/foodD_User",
       featured: true
     },
     {
       id: 4,
-      title: "Brand Identity Design",
-      description: "Complete brand identity design including logo, color palette, typography, and brand guidelines.",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
+      title: "Restaurant-UI-UX-Light-Dark-Theme ",
+      description: "Restaurant UI/UX with light and dark theme.",
+      image: resturentUIUXUIImage,
       category: "design",
       technologies: ["Figma", "Adobe CC", "Brand Strategy"],
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Arafath-MSM/Restaurant-UI-UX-Light-Dark-Theme",
       featured: false
     },
     {
       id: 5,
       title: "Restaurant Website",
       description: "Elegant restaurant website with online reservations, menu management, and customer reviews.",
-      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+      image: resturentUIImage,
       category: "web",
-      technologies: ["Next.js", "TypeScript", "Prisma"],
+      technologies: ["React.js", "Dot Net", "SQL Server"],
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Arafath-MSM/Yarl-Vide-ui",
       featured: false
     },
     {
       id: 6,
-      title: "Banking Dashboard",
-      description: "Secure banking dashboard with transaction history, account management, and financial analytics.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      title: "University Event Management System",
+      description: "Secure university event management system with event creation, registration, and management features.",
+      image: UEMSUIImage,
       category: "web",
-      technologies: ["React", "D3.js", "Node.js", "PostgreSQL"],
+      technologies: ["React", "TypeScript", "php", "MySQL"],
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Arafath-MSM/University-Event-Management-system",
       featured: true
-    }
+    },
+    {
+      id: 7,
+      title: "Travel App",
+      description: "Travel app with booking and payment integration.",
+      image: travelUIImage,
+      category: "mobile",
+      technologies: ["Flutter", "Dart", "Firebase"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/Arafath-MSM/Travel-App",
+      featured: true
+    },
+    {
+      id: 8,
+      title: "Textofia Web",
+      description: "Textofia platform consists core text analytics, a digital content conversion pipeline and domain specific solutions with generative AI.",
+      image: textofiaUIImage,
+      category: "web",
+      technologies: ["React.js", "Laravel", "MySQL"],
+      liveUrl: "https://textofia.com/",
+      githubUrl: "https://github.com/Arafath-MSM/textofia",
+      featured: true
+    },
+    {
+      id: 9,
+      title: "BMI calculator app",
+      description: "BMI calculator app with BMI calculation and BMI category.",
+      image: bmiCalculatorUIImage,
+      category: "mobile",
+      technologies: ["Flutter", "Dart", "Firebase"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/Arafath-MSM/BMI-Calculator",
+      featured: true
+    },
+    {
+      id: 10,
+      title: "Mojo Homes ",
+      description: "Mojo Homes is a real estate company that provides a platform for buying and selling properties.",
+      image: mojoHomesUIImage,
+      category: "web",
+      technologies: ["PHP", "Octobercms", "MySQL"],
+      liveUrl: "https://dev.mojohomes.com.au/",
+      githubUrl: "#",
+      featured: false
+    },
+    {
+      id: 11,
+      title: "Chenai Holistic Home Care ",
+      description: "Chenai Holistic Home Care is a home care company that provides a platform for hiring home care services.",
+      image: chenaiHolisticHomeCareUIImage,
+      category: "web",
+      technologies: ["PHP", "HTML", "CSS", "JavaScript" ,"wordpress", "mysql"],
+      liveUrl: "https://www.chhca.co.uk/",
+      githubUrl: "#",
+      featured: false
+    },
+    {
+      id: 12,
+      title: "Mojo Home UI Design",
+      description: "Mojo Home UI Design is a UI design for a home care company.",
+      image: mojoHomeUIUXUIImage,
+      category: "design",
+      technologies: ["Figma", "UI/UX", "user Experience"],
+      liveUrl: "https://dev.mojohomes.com.au/",
+      githubUrl: "#",
+      featured: false
+    },
+
   ];
 
   const categories = [
@@ -86,6 +170,13 @@ const Portfolio = () => {
   const filteredProjects = filter === "all" 
     ? projects 
     : projects.filter(project => project.category === filter);
+
+  const visibleProjects = filteredProjects.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProjects.length;
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_COUNT);
+  }, [filter]);
 
   return (
     <section id="portfolio" className="py-20 bg-subtle-gradient">
@@ -116,7 +207,7 @@ const Portfolio = () => {
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
+            {visibleProjects.map((project) => (
               <Card 
                 key={project.id} 
                 className="group overflow-hidden bg-card-gradient backdrop-blur-sm border-border/50 shadow-soft hover:shadow-strong transition-all duration-300 hover:scale-105"
@@ -134,14 +225,32 @@ const Portfolio = () => {
                   )}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
-                      <Button size="sm" variant="secondary" className="hover:scale-110 transition-transform duration-200">
-                        <Eye className="h-4 w-4 mr-2" />
-                        Preview
-                      </Button>
-                      <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:scale-110 transition-all duration-200">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </Button>
+                      {isLinkAvailable(project.liveUrl) ? (
+                        <Button size="sm" variant="secondary" className="hover:scale-110 transition-transform duration-200" asChild>
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" title="Open live preview">
+                            <Eye className="h-4 w-4 mr-2" />
+                            Preview
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button size="sm" variant="secondary" className="transition-transform duration-200 opacity-60" disabled title="Preview link not available">
+                          <Eye className="h-4 w-4 mr-2" />
+                          Preview
+                        </Button>
+                      )}
+                      {isLinkAvailable(project.githubUrl) ? (
+                        <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:scale-110 transition-all duration-200" asChild>
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" title="View source code">
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button size="sm" variant="outline" className="border-white/20 text-white transition-all duration-200 opacity-60" disabled title="Code link not available">
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -163,12 +272,28 @@ const Portfolio = () => {
                   </div>
 
                   <div className="flex space-x-2">
-                    <Button size="sm" variant="ghost" className="p-2 hover:bg-primary/10">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                    <Button size="sm" variant="ghost" className="p-2 hover:bg-primary/10">
-                      <Github className="h-4 w-4" />
-                    </Button>
+                    {isLinkAvailable(project.liveUrl) ? (
+                      <Button size="sm" variant="ghost" className="p-2 hover:bg-primary/10" asChild>
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" title="Open live preview">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button size="sm" variant="ghost" className="p-2 opacity-50" disabled title="Preview link not available">
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    )}
+                    {isLinkAvailable(project.githubUrl) ? (
+                      <Button size="sm" variant="ghost" className="p-2 hover:bg-primary/10" asChild>
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" title="View source code">
+                          <Github className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button size="sm" variant="ghost" className="p-2 opacity-50" disabled title="Code link not available">
+                        <Github className="h-4 w-4" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               </Card>
@@ -176,9 +301,27 @@ const Portfolio = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-300">
-              View More Projects
-            </Button>
+            {hasMore ? (
+              <Button
+                variant="outline"
+                size="lg"
+                className="hover:scale-105 transition-all duration-300"
+                onClick={() => setVisibleCount((c) => Math.min(c + LOAD_STEP, filteredProjects.length))}
+              >
+                View More Projects
+              </Button>
+            ) : (
+              filteredProjects.length > INITIAL_COUNT && (
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="hover:scale-105 transition-all duration-300"
+                  onClick={() => setVisibleCount(INITIAL_COUNT)}
+                >
+                  Show Less
+                </Button>
+              )
+            )}
           </div>
         </div>
       </div>

@@ -1,8 +1,48 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download, Mail } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { useEffect, useState } from "react";
+import cvPdf from "@/assets/cv-pdf/ARAFATH_MSM.pdf";
 
 const Hero = () => {
+  const titles = [
+    "Software Engineer",
+    "Full Stack Developer",
+    "Computer Engineer"
+  ];
+
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentTitle = titles[titleIndex];
+    const isComplete = displayText === currentTitle;
+    const isEmpty = displayText === "";
+
+    let delay = isDeleting ? 60 : 120;
+    if (!isDeleting && isComplete) delay = 1600; // pause at full text
+    if (isDeleting && isEmpty) delay = 400; // brief pause before next word
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        const next = currentTitle.slice(0, displayText.length + 1);
+        setDisplayText(next);
+        if (next === currentTitle) {
+          setIsDeleting(true);
+        }
+      } else {
+        const next = currentTitle.slice(0, Math.max(0, displayText.length - 1));
+        setDisplayText(next);
+        if (next === "") {
+          setIsDeleting(false);
+          setTitleIndex((titleIndex + 1) % titles.length);
+        }
+      }
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, titleIndex]);
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -35,17 +75,17 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             I'm{" "}
             <span className="bg-hero-gradient bg-clip-text text-transparent">
-              Alex Johnson
+              Arafath MSM
             </span>
           </h1>
           
           <h2 className="text-2xl md:text-3xl text-muted-foreground mb-6 font-light">
-            Creative Developer & Designer
+            <span>{displayText}</span>
+            <span className="border-r-2 border-muted-foreground ml-1 animate-pulse">&nbsp;</span>
           </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-            I craft beautiful digital experiences through innovative design and clean code. 
-            Let's bring your ideas to life with creativity and precision.
+          I build scalable web & Mobile applications with clean code and modern design, turning ideas into seamless digital experiences
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -66,12 +106,15 @@ const Hero = () => {
               Get In Touch
             </Button>
             <Button 
+              asChild
               variant="ghost" 
               size="lg"
               className="hover:bg-primary/5 transition-all duration-300 hover:scale-105"
             >
-              <Download className="mr-2 h-4 w-4" />
-              Download CV
+              <a href={cvPdf} download="ARAFATH_MSM.pdf">
+                <Download className="mr-2 h-4 w-4" />
+                Download CV
+              </a>
             </Button>
           </div>
           
