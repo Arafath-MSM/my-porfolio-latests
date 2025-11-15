@@ -15,6 +15,7 @@ import bmiCalculatorUIImage from "@/assets/BMI calculator.png";
 import mojoHomesUIImage from "@/assets/mojo-homes.png";
 import chenaiHolisticHomeCareUIImage from "@/assets/chennai.png";
 import mojoHomeUIUXUIImage from "@/assets/mojo-ui-ux.png";
+import ecommasUIImgage from "@/assets/ecomaas.png";
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("all");
@@ -154,6 +155,17 @@ const Portfolio = () => {
       category: "design",
       technologies: ["Figma", "UI/UX", "user Experience"],
       liveUrl: "https://dev.mojohomes.com.au/",
+      githubUrl: "#",
+      featured: false
+    },
+    {
+      id: 12,
+      title: "Ecomaas Web",
+      description: "Marketing site for a multichannel e-commerce platform",
+      image: ecommasUIImgage,
+      category: "web",
+      technologies: ["React", "Laravel", "SCSS", "MySQL"],
+      liveUrl: "https://www.ecomaas.co.uk/",
       githubUrl: "#",
       featured: false
     },
