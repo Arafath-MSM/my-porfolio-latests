@@ -105,7 +105,7 @@ const Hero = () => {
               <Mail className="mr-2 h-4 w-4" />
               Get In Touch
             </Button>
-            <Button 
+            {/* <Button 
               asChild
               variant="ghost" 
               size="lg"
@@ -115,7 +115,7 @@ const Hero = () => {
                 <Download className="mr-2 h-4 w-4" />
                 Download CV
               </a>
-            </Button>
+            </Button> */}
           </div>
           
           <div className="animate-bounce">
