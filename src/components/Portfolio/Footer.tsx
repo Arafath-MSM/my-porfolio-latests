@@ -1,10 +1,10 @@
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, X, Mail, Heart } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
     { icon: Github, href: "https://github.com/Arafath-MSM", label: "GitHub" },
     { icon: Linkedin, href: "www.linkedin.com/in/arafath-msm-44420b247", label: "LinkedIn" },
-    { icon: Twitter, href: "https://x.com/MsmArafath", label: "Twitter" },
+    { icon: X, href: "https://x.com/MsmArafath", label: "Twitter" },
     { icon: Mail, href: "mailto:msmarafath1@email.com", label: "Email" }
   ];
 
@@ -93,7 +93,7 @@ const Footer = () => {
                 © 2025 Arafath MSM. All rights reserved.
               </div>
               <div className="flex items-center text-muted-foreground text-sm">
-                Made with Arafath <Heart className="h-4 w-4 mx-1 text-red-500" /> using React & Tailwind CSS
+                Made with Arafath <Heart className="h-4 w-4 mx-1 text-red-500" />
               </div>
             </div>
           </div>

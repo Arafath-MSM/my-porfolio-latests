@@ -16,6 +16,8 @@ import mojoHomesUIImage from "@/assets/mojo-homes.png";
 import chenaiHolisticHomeCareUIImage from "@/assets/chennai.png";
 import mojoHomeUIUXUIImage from "@/assets/mojo-ui-ux.png";
 import ecommasUIImgage from "@/assets/ecomaas.png";
+import NemraUIImage from "@/assets/Nemra.png";
+import ilfordUIImage from "@/assets/ilford.png";
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("all");
@@ -26,19 +28,9 @@ const Portfolio = () => {
   const isLinkAvailable = (url: string) => Boolean(url && url.trim() !== "" && url !== "#");
 
   const projects = [
+    
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce platform with advanced filtering, payment integration, and admin dashboard.",
-      image: ecommerUIImage,
-      category: "web",
-      technologies: ["PHP", "Laravel", "MySQL", "Stripe"],
-      liveUrl: "https://www.franco.lk/",
-      githubUrl: "#",
-      featured: true
-    },
-    {
-      id: 2,
       title: "Karstation Web App",
       description: "Karstation is a web application that allows users to book a car for a ride.",
       image: karUIImage,
@@ -49,7 +41,7 @@ const Portfolio = () => {
       featured: false
     },
     {
-      id: 3,
+      id: 2,
       title: "Food Delivery App",
       description: "Cross-platform fitness tracking app with workout plans, progress tracking, and social features.",
       image: foodDUIImage,
@@ -60,7 +52,7 @@ const Portfolio = () => {
       featured: true
     },
     {
-      id: 4,
+      id: 3,
       title: "Restaurant-UI-UX-Light-Dark-Theme ",
       description: "Restaurant UI/UX with light and dark theme.",
       image: resturentUIUXUIImage,
@@ -71,7 +63,7 @@ const Portfolio = () => {
       featured: false
     },
     {
-      id: 5,
+      id: 4,
       title: "Restaurant Website",
       description: "Elegant restaurant website with online reservations, menu management, and customer reviews.",
       image: resturentUIImage,
@@ -82,7 +74,7 @@ const Portfolio = () => {
       featured: false
     },
     {
-      id: 6,
+      id: 5,
       title: "University Event Management System",
       description: "Secure university event management system with event creation, registration, and management features.",
       image: UEMSUIImage,
@@ -93,7 +85,7 @@ const Portfolio = () => {
       featured: true
     },
     {
-      id: 7,
+      id: 6,
       title: "Travel App",
       description: "Travel app with booking and payment integration.",
       image: travelUIImage,
@@ -104,7 +96,7 @@ const Portfolio = () => {
       featured: true
     },
     {
-      id: 8,
+      id: 7,
       title: "Textofia Web",
       description: "Textofia platform consists core text analytics, a digital content conversion pipeline and domain specific solutions with generative AI.",
       image: textofiaUIImage,
@@ -115,7 +107,7 @@ const Portfolio = () => {
       featured: true
     },
     {
-      id: 9,
+      id: 8,
       title: "BMI calculator app",
       description: "BMI calculator app with BMI calculation and BMI category.",
       image: bmiCalculatorUIImage,
@@ -126,7 +118,7 @@ const Portfolio = () => {
       featured: true
     },
     {
-      id: 10,
+      id: 9,
       title: "Mojo Homes ",
       description: "Mojo Homes is a real estate company that provides a platform for buying and selling properties.",
       image: mojoHomesUIImage,
@@ -137,15 +129,26 @@ const Portfolio = () => {
       featured: false
     },
     {
-      id: 11,
+      id: 10,
       title: "Chenai Holistic Home Care ",
       description: "Chenai Holistic Home Care is a home care company that provides a platform for hiring home care services.",
       image: chenaiHolisticHomeCareUIImage,
       category: "web",
-      technologies: ["PHP", "HTML", "CSS", "JavaScript" ,"wordpress", "mysql"],
+      technologies: ["PHP", "wordpress", "HTML", "CSS", "JavaScript" , "mysql"],
       liveUrl: "https://www.chhca.co.uk/",
       githubUrl: "#",
       featured: false
+    },
+    {
+      id: 11,
+      title: "E-Commerce Platform",
+      description: "A modern e-commerce platform with advanced filtering, payment integration, and admin dashboard.",
+      image: ecommerUIImage,
+      category: "web",
+      technologies: ["PHP", "Wordpress", "MySQL", "Stripe"],
+      liveUrl: "https://www.franco.lk/",
+      githubUrl: "#",
+      featured: true
     },
     {
       id: 12,
@@ -159,13 +162,35 @@ const Portfolio = () => {
       featured: false
     },
     {
-      id: 12,
+      id: 13,
       title: "Ecomaas Web",
       description: "Marketing site for a multichannel e-commerce platform",
       image: ecommasUIImgage,
       category: "web",
       technologies: ["React", "Laravel", "SCSS", "MySQL"],
       liveUrl: "https://www.ecomaas.co.uk/",
+      githubUrl: "#",
+      featured: false
+    },
+    {
+      id: 14,
+      title: "Nemra Properties",
+      description: "FULLY FLEDGED property development and construction firm",
+      image: NemraUIImage,
+      category: "web",
+      technologies: ["PHP", "Wordpress", "MySQL", "Elementor"],
+      liveUrl: "https://www.nemra.lk/",
+      githubUrl: "#",
+      featured: false
+    },
+    {
+      id: 15,
+      title: "Ilforbid uk ",
+      description: "Ilford is a lively, vibrant town centre offering a mix of shopping, dining, entertainment, and unique independent stores",
+      image: ilfordUIImage,
+      category: "web",
+      technologies: ["PHP", "Wordpress", "MySQL", "Custom Themes"],
+      liveUrl: "https://www.ilfordbid.com/",
       githubUrl: "#",
       featured: false
     },

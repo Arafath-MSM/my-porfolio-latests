@@ -9,14 +9,14 @@ const Skills = () => {
       icon: Code,
       title: "Frontend Development",
       description: "Creating responsive and interactive user interfaces",
-      skills: ["React", "TypeScript", "Next.js", "Vue.js", "Tailwind CSS", "SCSS"],
+      skills: ["React", "TypeScript","Laravel", "Next.js", "Vue.js", "Tailwind CSS", "SCSS"],
       color: "text-blue-500"
     },
     {
       icon: Database,
       title: "Backend Development",
       description: "Building robust server-side applications and APIs",
-      skills: ["Spring Boot", "PHP", "Node.js", "Python", "MySQL", "REST APIs"],
+      skills: ["Laravel", "Spring Boot", "PHP", "Node.js", "Python", "MySQL", "REST APIs"],
       color: "text-green-500"
     },
     {
@@ -44,7 +44,7 @@ const Skills = () => {
       icon: Smartphone,
       title: "Mobile Development",
       description: "Building cross-platform mobile applications",
-      skills: ["React Native", "Flutter", "Expo", "Mobile UI", "App Store", "Play Store"],
+      skills: ["React Native", "Flutter", "Mobile UI", "App Store", "Play Store"],
       color: "text-pink-500"
     }
   ];

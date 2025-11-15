@@ -4,7 +4,7 @@ import { User, Heart, Coffee, Award } from "lucide-react";
 
 const About = () => {
   const stats = [
-    { icon: User, label: "Years Experience", value: "2+" },
+    { icon: User, label: "Years Experience", value: "3+" },
     { icon: Award, label: "Projects Completed", value: "10+" },
     { icon: Heart, label: "Happy Clients", value: "5+" },
   ];
@@ -38,7 +38,7 @@ const About = () => {
               <div className="space-y-4">
                 <h3 className="text-2xl font-semibold">My Story</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                I’m a detail-oriented software engineer with hands-on experience in full-stack development, cloud services, and DevOps practices. I’ve built scalable applications using React.js, Spring Boot, Django, FastAPI, and Laravel, with strong foundations in databases like MySQL, PostgreSQL, and SQL Server.
+                I’m a detail-oriented software engineer with hands-on experience in full-stack development, Web development, and DevOps practices. I’ve built scalable applications using React.js, Laravel, Django, FastAPI, and Spring Boot with strong foundations in databases like MySQL, PostgreSQL, and SQL Server.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                 My journey includes collaborating with startups and companies to develop real-world solutions—from full-stack service systems and ERP tools to research projects in AI, NLP, and computer vision. I believe in clean code, scalable design, and continuous learning to deliver high-quality solutions.
